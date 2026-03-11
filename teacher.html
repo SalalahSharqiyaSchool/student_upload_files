@@ -6,7 +6,7 @@
 <title>المنصة الذكية — مدرسة صلالة الشرقية</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* --- الهوية البصرية الموحدة لمدرسة صلالة الشرقية --- */
+  /* --- الهوية البصرية الموحدة (مستوحاة من صفحة 1) --- */
   :root {
     --green: #1a6b3c; --green-light: #22873f; --green-pale: #e8f5ee;
     --gold: #c9a84c; --gold-light: #f0d98a; --dark: #0f2318;
@@ -23,52 +23,66 @@
                       radial-gradient(ellipse at 90% 95%, rgba(26,107,60,0.10) 0%, transparent 50%);
   }
 
-  /* --- الرأس (Header) --- */
+  /* --- الرأس (Header) الموحد --- */
   header { background: linear-gradient(135deg, #0a1f10 0%, #1a5c38 100%); color: white; position: relative; overflow: hidden; }
-  .header-inner { max-width: 1100px; margin: 0 auto; padding: 24px; display: flex; align-items: center; gap: 20px; position: relative; z-index: 1; }
-  .school-logo { width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
-  .header-text h1 { font-size: 1.3rem; font-weight: 800; }
-  .header-badge { margin-right: auto; background: rgba(201,168,76,0.2); border: 1px solid var(--gold); color: var(--gold-light); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 28px 24px; display: flex; align-items: center; gap: 20px; position: relative; z-index: 1; }
+  .school-logo { width: 64px; height: 64px; background: rgba(255,255,255,0.1); border-radius: 50%; border: 2px solid rgba(201,168,76,0.45); display: flex; align-items: center; justify-content: center; font-size: 1.9rem; flex-shrink: 0; }
+  .header-text h1 { font-size: 1.4rem; font-weight: 800; }
+  .header-badge { margin-right: auto; background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.45); color: var(--gold-light); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
 
-  main { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+  main { max-width: 1100px; margin: 0 auto; padding: 30px 24px 60px; }
 
-  /* --- تصميم البطاقات الجديدة --- */
+  /* --- البطاقات المحسنة --- */
   .content-card {
     background: white; border-radius: var(--radius); border: 1px solid var(--border);
-    padding: 25px; box-shadow: var(--shadow); margin-bottom: 25px;
+    padding: 30px; box-shadow: var(--shadow); margin-bottom: 25px;
+    transition: transform 0.3s ease;
   }
+  .content-card:hover { transform: translateY(-3px); }
 
-  h2 { color: var(--green); margin-bottom: 20px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  h2 { color: var(--green); margin-bottom: 25px; font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 12px; }
+  h2::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-right: 10px; }
 
-  /* --- النماذج والحقول --- */
-  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+  /* --- تصميم النماذج المحترف --- */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; align-items: flex-end; }
   .input-group { display: flex; flex-direction: column; gap: 8px; }
-  label { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+  label { font-weight: 700; font-size: 0.9rem; color: var(--dark); padding-right: 5px; }
   
   input, select, textarea {
-    font-family: 'Tajawal', sans-serif; padding: 12px; border: 1.5px solid var(--border);
-    border-radius: 10px; outline: none; transition: 0.3s;
+    font-family: 'Tajawal', sans-serif; padding: 14px; border: 1.5px solid var(--border);
+    border-radius: 12px; outline: none; transition: 0.3s; font-size: 0.95rem; background: #fafdfb;
   }
-  input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-pale); }
+  input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-pale); background: white; }
 
   /* --- الأزرار --- */
   .btn-primary {
     background: linear-gradient(135deg, var(--green), var(--green-light)); color: white;
-    border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer;
-    display: flex; align-items: center; gap: 8px; transition: 0.3s;
+    border: none; padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+    font-size: 1rem; box-shadow: 0 4px 12px rgba(26,107,60,0.2);
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,107,60,0.2); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(26,107,60,0.3); }
 
-  /* --- الجداول --- */
-  .table-wrapper { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-  th { background: var(--green-pale); color: var(--green); padding: 12px; text-align: right; font-size: 0.9rem; }
-  td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-  tr:hover { background: #fafafa; }
+  /* --- جداول البيانات الذكية --- */
+  .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; background: white; }
+  th { background: var(--green-pale); color: var(--green); padding: 15px; text-align: right; font-size: 0.9rem; font-weight: 800; }
+  td { padding: 15px; border-bottom: 1px solid #edf5f0; font-size: 0.95rem; color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: #f8fdfa; }
+
+  /* وسام الحالة */
+  .status-pill {
+    padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .status-active { background: #e6f4ea; color: #1e7e34; }
 
   @media (max-width: 768px) {
-    .header-inner { flex-direction: column; text-align: center; }
-    .header-badge { margin: 10px 0 0 0; }
+    .header-inner { flex-direction: column; text-align: center; padding: 20px; }
+    .header-badge { margin: 15px 0 0 0; }
+    .form-grid { grid-template-columns: 1fr; }
+    .content-card { padding: 20px; }
   }
 </style>
 </head>
@@ -81,7 +95,7 @@
       <h1>مدرسة صلالة الشرقية للتعليم الأساسي</h1>
       <p>نظام الإدارة الرقمي الجديد</p>
     </div>
-    <div class="header-badge">✨ التحديث الأخير 2026</div>
+    <div class="header-badge">✨ التحديث الذكي 2026</div>
   </div>
 </header>
 
@@ -90,40 +104,58 @@
     <h2>📝 إدخال بيانات جديدة</h2>
     <div class="form-grid">
       <div class="input-group">
-        <label>اسم الحقل</label>
-        <input type="text" placeholder="أدخل النص هنا...">
+        <label>اسم الطالب / البيان</label>
+        <input type="text" placeholder="مثال: أحمد محمد...">
       </div>
       <div class="input-group">
-        <label>التصنيف</label>
+        <label>التصنيف الأكاديمي</label>
         <select>
-          <option>خيار أول</option>
-          <option>خيار ثاني</option>
+          <option value="">اختر التصنيف...</option>
+          <option>نشاط صفي</option>
+          <option>اختبار قصير</option>
+          <option>مشروع تقني</option>
         </select>
       </div>
-      <div class="input-group" style="justify-content: flex-end;">
-        <button class="btn-primary">✅ حفظ البيانات</button>
+      <div class="input-group">
+        <button class="btn-primary">
+          <span>✅ حفظ البيانات</span>
+        </button>
       </div>
     </div>
   </div>
 
   <div class="content-card">
-    <h2>📊 ملخص السجلات</h2>
+    <h2>📊 ملخص السجلات المسجلة</h2>
     <div class="table-wrapper">
       <table>
         <thead>
           <tr>
             <th>التسلسل</th>
-            <th>البيان</th>
-            <th>الحالة</th>
-            <th>الإجراء</th>
+            <th>البيان المسجل</th>
+            <th>حالة القيد</th>
+            <th>الإجراءات</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>#01</td>
-            <td>مثال لبيان مسجل في النظام</td>
-            <td><span style="color:var(--green)">● مكتمل</span></td>
-            <td><button style="border:none; background:none; color:var(--green); cursor:pointer;">تعديل</button></td>
+            <td style="font-weight: 700; color: var(--muted);">#01</td>
+            <td>تطوير المنصة التعليمية - المرحلة الأولى</td>
+            <td>
+              <span class="status-pill status-active">● مكتمل بنجاح</span>
+            </td>
+            <td>
+              <button style="border:none; background:none; color:var(--green); font-weight:700; cursor:pointer; text-decoration:underline;">تعديل</button>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--muted);">#02</td>
+            <td>رصد درجات الفصل الدراسي الثاني</td>
+            <td>
+              <span class="status-pill status-active" style="background:#fff4e5; color:#b95e00;">● قيد المعالجة</span>
+            </td>
+            <td>
+              <button style="border:none; background:none; color:var(--green); font-weight:700; cursor:pointer; text-decoration:underline;">تعديل</button>
+            </td>
           </tr>
         </tbody>
       </table>
