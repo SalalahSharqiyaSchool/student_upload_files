@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المنصة الذكية — مدرسة صلالة الشرقية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* --- الهوية البصرية الموحدة لمدرسة صلالة الشرقية --- */
+  :root {
+    --green: #1a6b3c; --green-light: #22873f; --green-pale: #e8f5ee;
+    --gold: #c9a84c; --gold-light: #f0d98a; --dark: #0f2318;
+    --text: #1c3528; --muted: #6b8f7a; --white: #ffffff;
+    --surface: #f4fbf7; --border: #c8e6d4; --radius: 16px;
+    --shadow: 0 4px 24px rgba(26,107,60,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Tajawal', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh;
+    background-image: radial-gradient(ellipse at 20% 5%, rgba(201,168,76,0.10) 0%, transparent 50%), 
+                      radial-gradient(ellipse at 90% 95%, rgba(26,107,60,0.10) 0%, transparent 50%);
+  }
+
+  /* --- الرأس (Header) --- */
+  header { background: linear-gradient(135deg, #0a1f10 0%, #1a5c38 100%); color: white; position: relative; overflow: hidden; }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 24px; display: flex; align-items: center; gap: 20px; position: relative; z-index: 1; }
+  .school-logo { width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+  .header-text h1 { font-size: 1.3rem; font-weight: 800; }
+  .header-badge { margin-right: auto; background: rgba(201,168,76,0.2); border: 1px solid var(--gold); color: var(--gold-light); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+
+  /* --- تصميم البطاقات الجديدة --- */
+  .content-card {
+    background: white; border-radius: var(--radius); border: 1px solid var(--border);
+    padding: 25px; box-shadow: var(--shadow); margin-bottom: 25px;
+  }
+
+  h2 { color: var(--green); margin-bottom: 20px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+
+  /* --- النماذج والحقول --- */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+  .input-group { display: flex; flex-direction: column; gap: 8px; }
+  label { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+  
+  input, select, textarea {
+    font-family: 'Tajawal', sans-serif; padding: 12px; border: 1.5px solid var(--border);
+    border-radius: 10px; outline: none; transition: 0.3s;
+  }
+  input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-pale); }
+
+  /* --- الأزرار --- */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green), var(--green-light)); color: white;
+    border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,107,60,0.2); }
+
+  /* --- الجداول --- */
+  .table-wrapper { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+  th { background: var(--green-pale); color: var(--green); padding: 12px; text-align: right; font-size: 0.9rem; }
+  td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  tr:hover { background: #fafafa; }
+
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; text-align: center; }
+    .header-badge { margin: 10px 0 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="school-logo">🏫</div>
+    <div class="header-text">
+      <h1>مدرسة صلالة الشرقية للتعليم الأساسي</h1>
+      <p>نظام الإدارة الرقمي الجديد</p>
+    </div>
+    <div class="header-badge">✨ التحديث الأخير 2026</div>
+  </div>
+</header>
+
+<main>
+  <div class="content-card">
+    <h2>📝 إدخال بيانات جديدة</h2>
+    <div class="form-grid">
+      <div class="input-group">
+        <label>اسم الحقل</label>
+        <input type="text" placeholder="أدخل النص هنا...">
+      </div>
+      <div class="input-group">
+        <label>التصنيف</label>
+        <select>
+          <option>خيار أول</option>
+          <option>خيار ثاني</option>
+        </select>
+      </div>
+      <div class="input-group" style="justify-content: flex-end;">
+        <button class="btn-primary">✅ حفظ البيانات</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h2>📊 ملخص السجلات</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>التسلسل</th>
+            <th>البيان</th>
+            <th>الحالة</th>
+            <th>الإجراء</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#01</td>
+            <td>مثال لبيان مسجل في النظام</td>
+            <td><span style="color:var(--green)">● مكتمل</span></td>
+            <td><button style="border:none; background:none; color:var(--green); cursor:pointer;">تعديل</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
