@@ -6,6 +6,7 @@
 <title>لوحة المعلم الذكية — مدرسة صلالة الشرقية</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <style>
+  /* --- الهوية البصرية الموحدة لمدرسة صلالة الشرقية --- */
   :root {
     --green: #1a6b3c; --green-light: #22873f; --green-pale: #e8f5ee;
     --gold: #c9a84c; --gold-light: #f0d98a; --dark: #0f2318;
@@ -15,60 +16,69 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  
   body {
     font-family: 'Tajawal', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh;
-    background-image: radial-gradient(ellipse at 20% 5%, rgba(201,168,76,0.08) 0%, transparent 50%),
-                      radial-gradient(ellipse at 90% 95%, rgba(26,107,60,0.08) 0%, transparent 50%);
+    background-image: radial-gradient(ellipse at 20% 5%, rgba(201,168,76,0.10) 0%, transparent 50%),
+                      radial-gradient(ellipse at 90% 95%, rgba(26,107,60,0.10) 0%, transparent 50%);
   }
 
-  /* Header */
+  /* --- الرأس (Header) --- */
   header { background: linear-gradient(135deg, #0a1f10 0%, #1a5c38 100%); color: white; position: relative; overflow: hidden; }
-  .header-inner { max-width: 1100px; margin: 0 auto; padding: 25px; display: flex; align-items: center; gap: 20px; z-index: 1; position: relative; }
-  .school-logo { width: 60px; height: 60px; background: rgba(255,255,255,0.15); border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
-  .header-text h1 { font-size: 1.3rem; font-weight: 800; }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 28px 24px; display: flex; align-items: center; gap: 20px; z-index: 1; position: relative; }
+  .school-logo { width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.9rem; flex-shrink: 0; }
+  .header-text h1 { font-size: 1.4rem; font-weight: 800; line-height: 1.3; }
   .header-badge { margin-right: auto; background: rgba(201,168,76,0.2); border: 1px solid var(--gold); color: var(--gold-light); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
 
-  main { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+  main { max-width: 1100px; margin: 0 auto; padding: 30px 24px; }
 
-  /* Login Card */
-  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 70vh; }
+  /* --- شاشة الدخول الآمن --- */
+  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 70vh; padding: 24px; }
   .login-card { background: white; border-radius: 24px; padding: 45px; width: 100%; max-width: 400px; text-align: center; box-shadow: var(--shadow); border: 1px solid var(--border); }
-  .login-input { width: 100%; padding: 15px; border-radius: 12px; border: 1.5px solid var(--border); margin-bottom: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 5px; outline: none; transition: 0.3s; }
-  .login-input:focus { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-pale); }
-  .login-btn { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; }
+  .login-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+  .login-input { font-family: 'Tajawal'; width: 100%; padding: 15px; border-radius: 12px; border: 1.5px solid var(--border); margin-bottom: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; outline: none; transition: 0.3s; background: var(--surface); }
+  .login-input:focus { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-pale); background: white; }
+  .login-btn { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: 'Tajawal'; font-size: 1rem; }
   .login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,107,60,0.3); }
+  .login-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-  /* Stats Grid */
-  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
-  .stat-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); }
-  .stat-num { font-size: 2rem; font-weight: 800; color: var(--green); }
-  .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+  /* --- الإحصائيات (Stats) --- */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 25px; }
+  .stat-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); transition: 0.3s; }
+  .stat-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--green); line-height: 1; }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 8px; font-weight: 600; }
 
-  /* Filters */
-  .filters-card { background: white; border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 25px; align-items: flex-end; }
-  .filter-group { flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 6px; }
-  .filter-group label { font-size: 0.85rem; font-weight: 700; color: var(--green); }
-  .filter-group select, .filter-group input { padding: 10px; border-radius: 10px; border: 1.5px solid var(--border); font-family: 'Tajawal'; outline: none; }
-
-  /* Submission Cards */
-  .folders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
-  .folder-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); transition: 0.3s; border-right: 4px solid var(--green); position: relative; }
-  .folder-card:hover { transform: translateY(-5px); border-right-color: var(--gold); }
-  .folder-name { font-weight: 800; font-size: 1rem; color: var(--dark); margin-bottom: 8px; }
-  .meta-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
-  .meta-tag { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; font-weight: 700; background: var(--green-pale); color: var(--green); }
+  /* --- الفلاتر (Filters) --- */
+  .filters-card { background: white; border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; align-items: flex-end; }
+  .filter-group { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 8px; }
+  .filter-group label { font-size: 0.85rem; font-weight: 800; color: var(--green); padding-right: 5px; }
+  .filter-group select, .filter-group input { padding: 12px; border-radius: 10px; border: 1.5px solid var(--border); font-family: 'Tajawal'; outline: none; background: var(--surface); font-size: 0.9rem; }
   
-  /* File Preview Icons */
-  .file-icons { display: flex; gap: 8px; background: #f9f9f9; padding: 8px; border-radius: 8px; margin-bottom: 12px; font-size: 1.2rem; }
+  .refresh-btn { background: var(--green); color: white; border: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: 'Tajawal'; display: flex; align-items: center; gap: 8px; }
+  .refresh-btn:hover { background: var(--dark); }
 
-  .open-btn { display: block; width: 100%; text-align: center; background: var(--green); color: white; padding: 10px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
-  .open-btn:hover { background: var(--dark); }
+  /* --- بطاقات الطلاب (Student Cards) --- */
+  .folders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .folder-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); transition: 0.3s; border-right: 5px solid var(--green); position: relative; }
+  .folder-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(26,107,60,0.15); border-right-color: var(--gold); }
+  .folder-name { font-weight: 800; font-size: 1.1rem; color: var(--dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .meta-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+  .meta-tag { font-size: 0.75rem; padding: 5px 12px; border-radius: 8px; font-weight: 700; background: var(--green-pale); color: var(--green); border: 1px solid rgba(26,107,60,0.1); }
+  
+  .open-drive-btn { display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px; background: var(--green); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; margin-top: 15px; }
+  .open-drive-btn:hover { background: var(--dark); transform: scale(1.02); }
 
-  /* Loading Spinner */
-  .spinner { width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; }
+  /* --- العناصر التفاعلية --- */
+  .spinner { width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  @media (max-width: 768px) { .header-inner { flex-direction: column; text-align: center; } .header-badge { margin: 10px 0; } }
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; text-align: center; }
+    .header-badge { margin: 10px 0; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .filters-card { flex-direction: column; align-items: stretch; }
+  }
 </style>
 </head>
 <body>
@@ -78,148 +88,161 @@
     <div class="school-logo">🏫</div>
     <div class="header-text">
       <h1>مدرسة صلالة الشرقية للتعليم الأساسي</h1>
-      <p>منصة الإشراف التربوي الرقمية</p>
+      <p>نظام الإشراف التربوي الرقمي</p>
     </div>
-    <div class="header-badge">👨‍🏫 لوحة المعلم</div>
+    <div class="header-badge">🔐 نظام المعلم الآمن</div>
   </div>
 </header>
 
-<main>
-  <div id="loginScreen">
-    <div class="login-card">
-      <div style="font-size: 3rem; margin-bottom: 15px;">🔐</div>
-      <h2>دخول آمن</h2>
-      <p style="color: var(--muted); margin-bottom: 25px; font-size: 0.9rem;">يرجى إدخال كلمة المرور المعتمدة</p>
-      <input type="password" id="passwordInput" class="login-input" placeholder="••••••" onkeydown="if(event.key==='Enter') doLogin()">
-      <button class="login-btn" onclick="doLogin()">تحقق ودخول</button>
-      <p id="errorMsg" style="color: red; font-size: 0.8rem; margin-top: 10px; display: none;">❌ كلمة المرور غير صحيحة</p>
-    </div>
+<div id="loginScreen">
+  <div class="login-card">
+    <span class="login-icon">🔐</span>
+    <h2>دخول المعلم</h2>
+    <p style="color: var(--muted); margin-bottom: 25px; font-size: 0.9rem;">أدخل رمز التحقق للوصول إلى السجلات</p>
+    <div id="loginError" style="color:#b91c1c; background:#fef2f2; padding:10px; border-radius:8px; font-size:0.85rem; margin-bottom:15px; border:1px solid #fca5a5; display:none;">رمز التحقق غير صحيح ❌</div>
+    <input type="password" class="login-input" id="passwordInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">🔓 دخول آمن</button>
   </div>
+</div>
 
-  <div id="dashboard" style="display: none;">
+<div id="dashboard" style="display: none;">
+  <main>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-        <h2 style="font-weight: 800;">أعمال <span style="color: var(--green);">الطلاب</span></h2>
-        <button onclick="location.reload()" style="background: #fee2e2; color: #991b1b; border: none; padding: 8px 15px; border-radius: 8px; font-weight: 700; cursor: pointer;">🚪 خروج</button>
+        <h2 style="font-weight: 800; font-size: 1.4rem;">أعمال <span style="color: var(--green);">الطلاب</span></h2>
+        <button class="refresh-btn" style="background:#fee2e2; color:#991b1b; border: 1px solid #fca5a5" onclick="doLogout()">🚪 تسجيل الخروج</button>
     </div>
 
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">إجمالي الملفات</div></div>
-      <div class="stat-card"><div class="stat-num" id="statClasses">0</div><div class="stat-label">الصفوف</div></div>
-      <div class="stat-card"><div class="stat-num" id="statToday">0</div><div class="stat-label">أعمال اليوم</div></div>
+      <div class="stat-card"><div class="stat-num" id="statTotal">—</div><div class="stat-label">إجمالي الملفات</div></div>
+      <div class="stat-card"><div class="stat-num" id="statClasses">—</div><div class="stat-label">الصفوف</div></div>
+      <div class="stat-card"><div class="stat-num" id="statSubjects">—</div><div class="stat-label">المواد</div></div>
+      <div class="stat-card"><div class="stat-num" id="statToday">—</div><div class="stat-label">وصل اليوم</div></div>
     </div>
 
     <div class="filters-card">
       <div class="filter-group">
-        <label>الصف</label>
+        <label>تصفية حسب الصف</label>
         <select id="filterGrade" onchange="applyFilters()">
-          <option value="">الكل</option>
+          <option value="">كل الصفوف</option>
           <option value="خامس">خامس</option>
           <option value="سابع">سابع</option>
           <option value="تاسع">تاسع</option>
         </select>
       </div>
-      <div class="filter-group">
-        <label>الشعبة</label>
-        <select id="filterSection" onchange="applyFilters()">
-          <option value="">الكل</option>
-          <option value="شعبة 1">1</option>
-          <option value="شعبة 2">2</option>
-          <option value="شعبة 3">3</option>
-          <option value="شعبة 4">4</option>
-        </select>
-      </div>
       <div class="filter-group" style="flex: 2;">
-        <label>بحث بالاسم</label>
-        <input type="text" id="filterSearch" placeholder="ابحث عن طالب..." oninput="applyFilters()">
+        <label>بحث ذكي عن طالب</label>
+        <input type="text" id="filterSearch" placeholder="اكتب اسم الطالب هنا..." oninput="applyFilters()">
       </div>
+      <button class="refresh-btn" id="refreshBtn" onclick="loadFiles()">🔄 تحديث البيانات</button>
     </div>
 
     <div id="filesContainer" class="folders-grid">
         </div>
-  </div>
-</main>
+  </main>
+</div>
 
 <script>
-  // رابط Google Apps Script الخاص بك
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVyx-ZyDHljybA9cuiOBW9DzwFKfKx1mw-AJPQk_yfm1WZV9dA3vijDD6niQsqPrI/exec';
-  const PASS = 'teacher123'; 
+let SECURE_API_URL = ""; 
+let allSubmissions = [];
 
-  let allData = [];
+async function doLogin() {
+    const pwdInput = document.getElementById('passwordInput');
+    const loginBtn = document.getElementById('loginBtn');
+    const errorMsg = document.getElementById('loginError');
 
-  function doLogin() {
-    const input = document.getElementById('passwordInput').value;
-    if(input === PASS) {
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      loadData();
-    } else {
-      document.getElementById('errorMsg').style.display = 'block';
-    }
-  }
+    if (!pwdInput.value) return;
 
-  async function loadData() {
-    document.getElementById('filesContainer').innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><div class="spinner" style="border-top-color:var(--green)"></div><p>جاري مزامنة البيانات مع Drive...</p></div>';
+    loginBtn.innerHTML = '<span class="spinner"></span> جاري التحقق...';
+    loginBtn.disabled = true;
+    errorMsg.style.display = 'none';
+
     try {
-      const resp = await fetch(SCRIPT_URL + '?action=list');
-      const data = await resp.json();
-      allData = data.submissions || [];
-      updateStats(allData);
-      applyFilters();
-    } catch (e) {
-      document.getElementById('filesContainer').innerHTML = '<p>خطأ في الاتصال بالسيرفر ⚠️</p>';
-    }
-  }
+        const response = await fetch(`/api/get-config?password=${pwdInput.value}`);
+        const data = await response.json();
 
-  function applyFilters() {
+        if (response.ok && data.success) {
+            SECURE_API_URL = data.apiUrl;
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            loadFiles();
+        } else {
+            throw new Error();
+        }
+    } catch (err) {
+        errorMsg.style.display = 'block';
+        loginBtn.innerHTML = '🔓 دخول آمن';
+        loginBtn.disabled = false;
+    }
+}
+
+function doLogout() {
+    location.reload();
+}
+
+async function loadFiles() {
+    if (!SECURE_API_URL) return;
+
+    const btn = document.getElementById('refreshBtn');
+    const container = document.getElementById('filesContainer');
+    btn.innerHTML = '<span class="spinner"></span> جاري التحميل...';
+    container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px; color:var(--muted); font-weight:600;">جاري جلب الملفات من Google Drive...</div>';
+    
+    try {
+        const res = await fetch(SECURE_API_URL + '?action=list');
+        const data = await res.json();
+        if (data.status === 'success') {
+            allSubmissions = data.submissions;
+            applyFilters();
+            updateStats(allSubmissions);
+        }
+    } catch (err) {
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:#b91c1c;">حدث خطأ في جلب البيانات ⚠️</div>';
+    }
+    btn.innerHTML = '🔄 تحديث البيانات';
+}
+
+function applyFilters() {
     const grade = document.getElementById('filterGrade').value;
-    const section = document.getElementById('filterSection').value;
     const search = document.getElementById('filterSearch').value.toLowerCase();
 
-    const filtered = allData.filter(s => {
-      const matchGrade = grade ? s.className.includes(grade) : true;
-      const matchSection = section ? s.className.includes(section) : true;
-      const matchSearch = search ? s.name.toLowerCase().includes(search) : true;
-      return matchGrade && matchSection && matchSearch;
+    const filtered = allSubmissions.filter(s => {
+        const matchGrade = grade ? s.className.includes(grade) : true;
+        const matchSearch = search ? s.name.toLowerCase().includes(search) : true;
+        return matchGrade && matchSearch;
     });
 
-    render(filtered);
-  }
+    renderSubmissions(filtered);
+}
 
-  function render(list) {
+function renderSubmissions(subs) {
     const container = document.getElementById('filesContainer');
-    if(list.length === 0) {
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:gray;">لا توجد نتائج مطابقة 🔍</p>';
+    if (subs.length === 0) {
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px; color:var(--muted);">لا توجد أعمال تطابق بحثك 🔍</div>';
         return;
     }
 
-    container.innerHTML = list.map(s => `
-      <div class="folder-card">
-        <div class="folder-name">${s.name.split(' — ')[0]}</div>
-        <div class="meta-tags">
-          <span class="meta-tag">🏫 ${s.className}</span>
-          <span class="meta-tag" style="background:#fff7ed; color:#c2410c;">📖 ${s.subjectName}</span>
+    container.innerHTML = subs.map(s => `
+        <div class="folder-card">
+            <div class="folder-name">👤 ${s.name.split(' — ')[0]}</div>
+            <div class="meta-tags">
+                <span class="meta-tag">🏫 ${s.className}</span>
+                <span class="meta-tag" style="background:#fff7ed; color:#c2410c;">📖 ${s.subjectName}</span>
+            </div>
+            <div style="font-size:0.8rem; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:5px;">
+                📅 <span>${new Date(s.createdTime).toLocaleDateString('ar-OM', {day:'numeric', month:'long'})}</span>
+            </div>
+            <a href="${s.driveUrl}" target="_blank" class="open-drive-btn">📂 فتح في Drive</a>
         </div>
-        <div class="file-icons">
-          ${s.files.map(f => getIcon(f.name)).join(' ')}
-        </div>
-        <div style="font-size:0.75rem; color:gray; margin-bottom:12px;">📅 ${new Date(s.createdTime).toLocaleDateString('ar-OM')}</div>
-        <a href="${s.driveUrl}" target="_blank" class="open-btn">📁 عرض الملفات</a>
-      </div>
     `).join('');
-  }
+}
 
-  function updateStats(data) {
-    document.getElementById('statTotal').innerText = data.length;
-    document.getElementById('statClasses').innerText = [...new Set(data.map(s => s.className))].length;
+function updateStats(subs) {
+    document.getElementById('statTotal').textContent = subs.length;
+    document.getElementById('statClasses').textContent = [...new Set(subs.map(s => s.className))].length;
+    document.getElementById('statSubjects').textContent = [...new Set(subs.map(s => s.subjectName))].length;
     const today = new Date().toDateString();
-    document.getElementById('statToday').innerText = data.filter(s => new Date(s.createdTime).toDateString() === today).length;
-  }
-
-  function getIcon(n) {
-    const ext = n.split('.').pop().toLowerCase();
-    const map = { pdf:'📄', jpg:'🖼️', png:'🖼️', doc:'📝', docx:'📝', mp4:'🎬' };
-    return map[ext] || '📎';
-  }
+    document.getElementById('statToday').textContent = subs.filter(s => new Date(s.createdTime).toDateString() === today).length;
+}
 </script>
 </body>
 </html>
