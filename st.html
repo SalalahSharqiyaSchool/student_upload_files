@@ -69,15 +69,26 @@
     flex-shrink: 0;
   }
   .header-text h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
   }
   .teacher-name {
     margin-right: auto;
     text-align: left;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .teacher-name span {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.9;
+    color: var(--gold-light);
   }
   .teacher-name strong {
-    color: var(--gold-light);
+    font-size: 1rem;
+    color: white;
   }
 
   /* Main */
@@ -115,12 +126,8 @@
     display: flex; align-items: center; justify-content: center;
   }
 
-  /* Form */
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  /* Form Controls */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-grid.full { grid-template-columns: 1fr; }
   .form-group { display: flex; flex-direction: column; gap: 7px; }
   label { font-size: 0.875rem; font-weight: 600; }
@@ -134,12 +141,9 @@
     outline: none;
     width: 100%;
   }
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--green);
-    background: white;
-  }
+  input:focus, select:focus, textarea:focus { border-color: var(--green); background: white; }
 
-  /* Upload Zone */
+  /* Upload Area */
   .upload-zone {
     border: 2px dashed var(--border);
     border-radius: var(--radius);
@@ -148,11 +152,10 @@
     cursor: pointer;
     position: relative;
     background: var(--surface);
+    transition: 0.3s;
   }
   .upload-zone:hover { border-color: var(--green); background: var(--green-pale); }
-  .upload-zone input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer;
-  }
+  .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
   .upload-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
 
   /* File list */
@@ -168,13 +171,13 @@
   .file-info .fname { font-size: 0.875rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .file-remove { background: none; border: none; color: #e05c5c; cursor: pointer; font-weight: bold; }
 
-  /* Progress */
+  /* Progress Bar */
   .progress-wrap { display: none; margin-top: 15px; }
   .progress-wrap.show { display: block; }
   .progress-bar-bg { background: var(--border); border-radius: 10px; height: 10px; overflow: hidden; }
   .progress-bar { background: var(--green); height: 100%; width: 0%; transition: width 0.3s; }
 
-  /* Buttons */
+  /* Submit Button */
   .submit-btn {
     width: 100%;
     background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
@@ -186,29 +189,42 @@
     font-weight: 700;
     cursor: pointer;
     margin-top: 15px;
+    transition: 0.3s;
   }
-  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .submit-btn:disabled { 
+    background: #ccc; 
+    cursor: not-allowed; 
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+  }
 
-  /* Success Message Card */
+  /* Success Card Style */
   .success-msg {
     display: none;
     background: #ffffff;
     border: 2px solid var(--green);
     border-radius: var(--radius);
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     margin-top: 20px;
-    box-shadow: 0 10px 30px rgba(26,107,60,0.15);
+    box-shadow: 0 10px 30px rgba(26,107,60,0.2);
+    position: relative;
+    z-index: 10;
   }
-  .success-msg.show { display: block; animation: fadeInUp 0.5s ease; }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .success-msg.show { display: block; animation: fadeInUp 0.5s ease-out; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
   .error-msg { display: none; color: #b91c1c; background: #fef2f2; padding: 12px; border-radius: 8px; margin-top: 10px; border: 1px solid #fca5a5; }
   .error-msg.show { display: block; }
 
-  footer { background: var(--dark); color: white; text-align: center; padding: 20px; font-size: 0.85rem; }
+  footer { background: var(--dark); color: white; text-align: center; padding: 25px; font-size: 0.85rem; }
   
-  @media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  @media(max-width: 600px) { 
+    .form-grid { grid-template-columns: 1fr; } 
+    .header-inner { flex-direction: column; text-align: center; }
+    .teacher-name { margin-right: 0; width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -221,6 +237,7 @@
       <p>منصة رفع الأعمال المدرسية</p>
     </div>
     <div class="teacher-name">
+      <span>معلم المادة:</span>
       <strong>الأستاذ فيصل العريبي</strong>
     </div>
   </div>
@@ -232,11 +249,11 @@
     <div class="form-grid">
       <div class="form-group">
         <label>اسم الطالب <span class="req">*</span></label>
-        <input type="text" id="studentName" placeholder="الاسم الثلاثي">
+        <input type="text" id="studentName" placeholder="أدخل اسمك الثلاثي">
       </div>
       <div class="form-group">
         <label>المادة</label>
-        <input type="text" value="تقنية المعلومات" id="subject" readonly style="background:#e8f5ee;">
+        <input type="text" value="تقنية المعلومات" id="subject" readonly style="background:#e8f5ee; font-weight: bold; color: var(--green);">
       </div>
       <div class="form-group">
         <label>الصف <span class="req">*</span></label>
@@ -260,11 +277,11 @@
     <div class="form-grid full" style="margin-top:16px;">
       <div class="form-group">
         <label>عنوان العمل <span class="req">*</span></label>
-        <input type="text" id="workTitle" placeholder="مثال: مشروع البرمجة">
+        <input type="text" id="workTitle" placeholder="مثال: مشروع البوربوينت - الفصل الثاني">
       </div>
       <div class="form-group">
-        <label>ملاحظات</label>
-        <textarea id="notes" placeholder="ملاحظاتك للمعلم..."></textarea>
+        <label>ملاحظات إضافية</label>
+        <textarea id="notes" placeholder="اكتب أي ملاحظة تود إيصالها للأستاذ فيصل..."></textarea>
       </div>
     </div>
   </div>
@@ -275,7 +292,7 @@
       <input type="file" id="fileInput" multiple>
       <span class="upload-icon">☁️</span>
       <h3>اسحب الملفات هنا أو انقر للاختيار</h3>
-      <p>يمكنك رفع أي نوع من الملفات (الحد الأقصى: 100 ميغابايت)</p>
+      <p>يمكنك رفع (صور، PDF، Word، فيديو، إلخ) بحد أقصى 100 ميغابايت</p>
     </div>
 
     <div class="file-list" id="fileList"></div>
@@ -291,10 +308,10 @@
     <div class="error-msg" id="errorMsg"></div>
 
     <div class="success-msg" id="successMsg">
-      <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+      <div style="font-size: 3.5rem; margin-bottom: 10px;">✅</div>
       <h2 style="color: var(--green); margin-bottom: 10px;">تم الانتهاء من التحميل!</h2>
-      <p>شكراً لك، تم استلام عملك بنجاح وحفظه في ملفات المادة.</p>
-      <button onclick="hideMessages()" style="margin-top:15px; padding: 8px 20px; cursor:pointer; border-radius:8px; border:1px solid var(--green); background:none; color:var(--green); font-family:inherit;">إغلاق</button>
+      <p style="font-size: 1.1rem; color: var(--text);">شكراً لك يا بطل، لقد استلم <b>الأستاذ فيصل</b> عملك بنجاح.</p>
+      <button onclick="hideMessages()" style="margin-top:20px; padding: 12px 30px; cursor:pointer; border-radius:10px; border:none; background:var(--green); color:white; font-family:inherit; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">إغلاق الرسالة والعودة</button>
     </div>
 
     <button class="submit-btn" id="submitBtn" onclick="uploadFiles()">⬆️ رفع العمل الآن</button>
@@ -302,7 +319,7 @@
 </main>
 
 <footer>
-  <p>© جميع حقوق الملكية محفوظة لـ <strong>الأستاذ فيصل العريبي 2026</strong></p>
+  <p>© جميع الحقوق محفوظة لـ <strong>الأستاذ فيصل العريبي 2026</strong></p>
 </footer>
 
 <script>
@@ -313,7 +330,7 @@ document.getElementById('fileInput').addEventListener('change', (e) => addFiles(
 function addFiles(files) {
   for (const f of files) {
     if (f.size > 100 * 1024 * 1024) { 
-        alert(`المساحة كبيرة جداً للملف: ${f.name}`); 
+        alert(`الملف "${f.name}" كبير جداً (أكثر من 100 ميغابايت)`); 
         continue; 
     }
     selectedFiles.push(f);
@@ -334,9 +351,9 @@ function renderFileList() {
       <div class="file-item">
         <span style="font-size:1.2rem">📄</span>
         <div class="file-info">
-          <div class="fname">${f.name}</div>
+          <div class="fname" title="${f.name}">${f.name}</div>
         </div>
-        <button class="file-remove" onclick="removeFile(${i})">✕</button>
+        <button class="file-remove" onclick="removeFile(${i})" title="حذف">✕</button>
       </div>`;
   });
 }
@@ -351,19 +368,19 @@ async function uploadFiles() {
   const title = document.getElementById('workTitle').value.trim();
 
   if (!name || !grade || !sec || !title || selectedFiles.length === 0) {
-    showError('يرجى التأكد من ملء جميع الحقول ورفع ملف واحد على الأقل');
+    showError('يرجى تعبئة جميع الحقول المطلوبة واختيار الملفات');
     return;
   }
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.textContent = '⏳ جارٍ المعالجة...';
+  btn.textContent = '⏳ جاري إرسال عملك...';
   document.getElementById('progressWrap').classList.add('show');
 
   try {
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
-      updateProgress(Math.round((i / selectedFiles.length) * 100), `رفع: ${file.name}`);
+      updateProgress(Math.round((i / selectedFiles.length) * 100), `جاري رفع: ${file.name}`);
       
       const base64 = await fileToBase64(file);
       const payload = {
@@ -371,7 +388,7 @@ async function uploadFiles() {
         className: `الصف ${grade} - شعبة ${sec}`,
         subject: "تقنية المعلومات",
         workTitle: title,
-        notes: document.getElementById('notes').value || 'لا يوجد',
+        notes: document.getElementById('notes').value || 'لا يوجد ملاحظات',
         fileName: file.name,
         mimeType: file.type || 'application/octet-stream',
         fileData: base64
@@ -380,18 +397,21 @@ async function uploadFiles() {
       await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
     }
 
-    // النجاح وإعادة ضبط النموذج
-    updateProgress(100, 'اكتمل الرفع!');
+    updateProgress(100, 'اكتمل الرفع بنجاح!');
+    
+    // إظهار رسالة النجاح وتفريغ الحقول
     setTimeout(() => {
       document.getElementById('successMsg').classList.add('show');
       resetForm();
+      // ملاحظة: الزر سيبقى disabled هنا كما طلبت
+      btn.textContent = 'تم الرفع بنجاح ✅';
     }, 500);
 
   } catch (err) {
-    showError('حدث خطأ: ' + err.message);
-  } finally {
+    showError('عذراً، حدث خطأ أثناء الرفع: ' + err.message);
     btn.disabled = false;
-    btn.textContent = '⬆️ رفع العمل الآن';
+    btn.textContent = '⬆️ إعادة محاولة الرفع';
+  } finally {
     document.getElementById('progressWrap').classList.remove('show');
   }
 }
@@ -430,6 +450,11 @@ function showError(msg) {
 function hideMessages() {
   document.getElementById('errorMsg').classList.remove('show');
   document.getElementById('successMsg').classList.remove('show');
+  
+  // إعادة تفعيل الزر عند إغلاق بطاقة النجاح
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.textContent = '⬆️ رفع العمل الآن';
 }
 </script>
 </body>
