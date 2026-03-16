@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رفع الأعمال — مدرسة صلالة الشرقية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b3c;
+    --green-light: #22873f;
+    --green-pale: #e8f5ee;
+    --gold: #c9a84c;
+    --gold-light: #f0d98a;
+    --dark: #0f2318;
+    --text: #1c3528;
+    --muted: #6b8f7a;
+    --white: #ffffff;
+    --surface: #f4fbf7;
+    --border: #c8e6d4;
+    --radius: 16px;
+    --shadow: 0 4px 24px rgba(26,107,60,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+      radial-gradient(ellipse at 80% 10%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 90%, rgba(26,107,60,0.10) 0%, transparent 60%);
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--green) 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .school-logo {
+    width: 68px; height: 68px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  .teacher-name {
+    margin-right: auto;
+    text-align: left;
+  }
+  .teacher-name strong {
+    color: var(--gold-light);
+  }
+
+  /* Main */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    flex: 1;
+    width: 100%;
+  }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-title .icon {
+    width: 34px; height: 34px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Form */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-grid.full { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  label { font-size: 0.875rem; font-weight: 600; }
+  .req { color: #e05c5c; }
+  input, select, textarea {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    outline: none;
+    width: 100%;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--green);
+    background: white;
+  }
+
+  /* Upload Zone */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 40px 24px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    background: var(--surface);
+  }
+  .upload-zone:hover { border-color: var(--green); background: var(--green-pale); }
+  .upload-zone input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+  .upload-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+  /* File list */
+  .file-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .file-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--green-pale);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .file-info { flex: 1; min-width: 0; }
+  .file-info .fname { font-size: 0.875rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-remove { background: none; border: none; color: #e05c5c; cursor: pointer; font-weight: bold; }
+
+  /* Progress */
+  .progress-wrap { display: none; margin-top: 15px; }
+  .progress-wrap.show { display: block; }
+  .progress-bar-bg { background: var(--border); border-radius: 10px; height: 10px; overflow: hidden; }
+  .progress-bar { background: var(--green); height: 100%; width: 0%; transition: width 0.3s; }
+
+  /* Buttons */
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Success Message Card */
+  .success-msg {
+    display: none;
+    background: #ffffff;
+    border: 2px solid var(--green);
+    border-radius: var(--radius);
+    padding: 25px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(26,107,60,0.15);
+  }
+  .success-msg.show { display: block; animation: fadeInUp 0.5s ease; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .error-msg { display: none; color: #b91c1c; background: #fef2f2; padding: 12px; border-radius: 8px; margin-top: 10px; border: 1px solid #fca5a5; }
+  .error-msg.show { display: block; }
+
+  footer { background: var(--dark); color: white; text-align: center; padding: 20px; font-size: 0.85rem; }
+  
+  @media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="school-logo">🏫</div>
+    <div class="header-text">
+      <h1>مدرسة صلالة الشرقية</h1>
+      <p>منصة رفع الأعمال المدرسية</p>
+    </div>
+    <div class="teacher-name">
+      <strong>الأستاذ فيصل العريبي</strong>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="card-title"><div class="icon">👤</div> بيانات الطالب</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>اسم الطالب <span class="req">*</span></label>
+        <input type="text" id="studentName" placeholder="الاسم الثلاثي">
+      </div>
+      <div class="form-group">
+        <label>المادة</label>
+        <input type="text" value="تقنية المعلومات" id="subject" readonly style="background:#e8f5ee;">
+      </div>
+      <div class="form-group">
+        <label>الصف <span class="req">*</span></label>
+        <select id="gradeLevel">
+          <option value="">— اختر الصف —</option>
+          <option value="خامس">الصف الخامس</option>
+          <option value="سابع">الصف السابع</option>
+          <option value="تاسع">الصف التاسع</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>الشعبة <span class="req">*</span></label>
+        <select id="section">
+          <option value="">— اختر الشعبة —</option>
+          <option value="1">شعبة 1</option>
+          <option value="2">شعبة 2</option>
+          <option value="3">شعبة 3</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-grid full" style="margin-top:16px;">
+      <div class="form-group">
+        <label>عنوان العمل <span class="req">*</span></label>
+        <input type="text" id="workTitle" placeholder="مثال: مشروع البرمجة">
+      </div>
+      <div class="form-group">
+        <label>ملاحظات</label>
+        <textarea id="notes" placeholder="ملاحظاتك للمعلم..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">📎</div> رفع الملفات</div>
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="fileInput" multiple>
+      <span class="upload-icon">☁️</span>
+      <h3>اسحب الملفات هنا أو انقر للاختيار</h3>
+      <p>يمكنك رفع أي نوع من الملفات (الحد الأقصى: 100 ميغابايت)</p>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;">
+        <span id="progressText">جارٍ الرفع...</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="success-msg" id="successMsg">
+      <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+      <h2 style="color: var(--green); margin-bottom: 10px;">تم الانتهاء من التحميل!</h2>
+      <p>شكراً لك، تم استلام عملك بنجاح وحفظه في ملفات المادة.</p>
+      <button onclick="hideMessages()" style="margin-top:15px; padding: 8px 20px; cursor:pointer; border-radius:8px; border:1px solid var(--green); background:none; color:var(--green); font-family:inherit;">إغلاق</button>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="uploadFiles()">⬆️ رفع العمل الآن</button>
+  </div>
+</main>
+
+<footer>
+  <p>© جميع حقوق الملكية محفوظة لـ <strong>الأستاذ فيصل العريبي 2026</strong></p>
+</footer>
+
+<script>
+let selectedFiles = [];
+
+document.getElementById('fileInput').addEventListener('change', (e) => addFiles(e.target.files));
+
+function addFiles(files) {
+  for (const f of files) {
+    if (f.size > 100 * 1024 * 1024) { 
+        alert(`المساحة كبيرة جداً للملف: ${f.name}`); 
+        continue; 
+    }
+    selectedFiles.push(f);
+  }
+  renderFileList();
+}
+
+function removeFile(idx) {
+  selectedFiles.splice(idx, 1);
+  renderFileList();
+}
+
+function renderFileList() {
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+  selectedFiles.forEach((f, i) => {
+    list.innerHTML += `
+      <div class="file-item">
+        <span style="font-size:1.2rem">📄</span>
+        <div class="file-info">
+          <div class="fname">${f.name}</div>
+        </div>
+        <button class="file-remove" onclick="removeFile(${i})">✕</button>
+      </div>`;
+  });
+}
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVyx-ZyDHljybA9cuiOBW9DzwFKfKx1mw-AJPQk_yfm1WZV9dA3vijDD6niQsqPrI/exec';
+
+async function uploadFiles() {
+  hideMessages();
+  const name = document.getElementById('studentName').value.trim();
+  const grade = document.getElementById('gradeLevel').value;
+  const sec = document.getElementById('section').value;
+  const title = document.getElementById('workTitle').value.trim();
+
+  if (!name || !grade || !sec || !title || selectedFiles.length === 0) {
+    showError('يرجى التأكد من ملء جميع الحقول ورفع ملف واحد على الأقل');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ جارٍ المعالجة...';
+  document.getElementById('progressWrap').classList.add('show');
+
+  try {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      updateProgress(Math.round((i / selectedFiles.length) * 100), `رفع: ${file.name}`);
+      
+      const base64 = await fileToBase64(file);
+      const payload = {
+        studentName: name,
+        className: `الصف ${grade} - شعبة ${sec}`,
+        subject: "تقنية المعلومات",
+        workTitle: title,
+        notes: document.getElementById('notes').value || 'لا يوجد',
+        fileName: file.name,
+        mimeType: file.type || 'application/octet-stream',
+        fileData: base64
+      };
+
+      await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+    }
+
+    // النجاح وإعادة ضبط النموذج
+    updateProgress(100, 'اكتمل الرفع!');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.add('show');
+      resetForm();
+    }, 500);
+
+  } catch (err) {
+    showError('حدث خطأ: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '⬆️ رفع العمل الآن';
+    document.getElementById('progressWrap').classList.remove('show');
+  }
+}
+
+function resetForm() {
+  document.getElementById('studentName').value = '';
+  document.getElementById('gradeLevel').value = '';
+  document.getElementById('section').value = '';
+  document.getElementById('workTitle').value = '';
+  document.getElementById('notes').value = '';
+  document.getElementById('fileInput').value = '';
+  selectedFiles = [];
+  renderFileList();
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function updateProgress(pct, text) {
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressText').textContent = text;
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg; el.classList.add('show');
+}
+
+function hideMessages() {
+  document.getElementById('errorMsg').classList.remove('show');
+  document.getElementById('successMsg').classList.remove('show');
+}
+</script>
+</body>
+</html>
